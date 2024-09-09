@@ -1,0 +1,70 @@
+<html>
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Web Page</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+
+<script>
+
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+function LoadShowHide(t){
+    if (t == true){
+        document.getElementsByName("loading_area")[0].style.display = "flex";
+    }
+    else if (t == false){
+        document.getElementsByName("loading_area")[0].style.display = "none";
+    }
+}
+
+
+
+window.document.addEventListener("readystatechange",function(event){
+  
+    if (document.readyState == "complete") {
+        
+        document.getElementsByName("main_page")[0].src="main.html"
+        document.getElementsByName("main_page")[0].addEventListener("load",function(){
+        setTimeout(()=>{
+            LoadShowHide(false);
+            document.getElementsByName("main_page")[0].style.display = "flex";
+
+        }, 2000);
+            
+    
+        });
+    }
+    console.log(event);
+})
+
+window.addEventListener("load",function(){
+        console.log(1)    
+ })
+
+
+</script>
+
+
+
+  <body style="border: none; padding: 0;margin: 0;"> 
+
+    <iframe src="loading.html" name="loading_area" class="no_iframe_border fullscreen_w_h_viewport" style="background-color: black;">
+
+    </iframe>
+
+    <iframe allowfullscreen frameborder="0" name="main_page" style="display: none;" class="no_iframe_border iframe_full_display">
+
+    </iframe>
+
+    
+
+
+
+
+
+  </body>
+
+</html>
